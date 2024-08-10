@@ -1,4 +1,6 @@
 import { makeApiRequest, generateSymbol, parseFullSymbol } from './helpers.js';
+let url = new URL(window.location.href);
+let token = url.searchParams.get('token');
 
 // DatafeedConfiguration implementation
 const configurationData = {
@@ -51,7 +53,7 @@ async function getAllSymbols() {
             }
         );
     }
-    console.log("allSymbols-----------",allSymbols);
+    // console.log("allSymbols-----------",allSymbols);
 
     // for (const exchange of configurationData.exchanges) {
     //     const pairs = data.Data[exchange.value].pairs;
@@ -71,7 +73,7 @@ async function getAllSymbols() {
     //     }
     // }
 
-    console.log("allSymbols-----------",allSymbols)
+    // console.log("allSymbols-----------",allSymbols)
     return allSymbols;
 }
 
@@ -145,10 +147,10 @@ export default {
 
     getBars: async (symbolInfo, resolution, periodParams, onHistoryCallback, onErrorCallback) => {
         const { from, to, firstDataRequest } = periodParams;
-        console.log('[getBars]: Method call', symbolInfo, resolution, from, to);
-        console.log('from----------------------', from);
-        console.log('to-------------------------', to);
-        console.log('exchange-------------------------', symbolInfo?.exchange);
+        // console.log('[getBars]: Method call', symbolInfo, resolution, from, to);
+        // console.log('from----------------------', from);
+        // console.log('to-------------------------', to);
+        // console.log('exchange-------------------------', symbolInfo?.exchange);
         // const parsedSymbol = parseFullSymbol(symbolInfo.ticker);
         // const urlParameters = {
         //     e: parsedSymbol.exchange,
@@ -170,7 +172,7 @@ export default {
             const options = {
                 method: 'GET',
                 headers: { 
-                    'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIyNDQ0NTQ2N19NQVJLRVRfYjQ4ZDliY2RiOThmYzgwOTY1YzQ2NiIsInB1YmxpY0tleSI6ImI0OGQ5YmNkYjk4ZmM4MDk2NWM0NjYiLCJpYXQiOjE3MjMyMDg4NTIsImV4cCI6MTcyMzI5NTI1Mn0.WIm_AKsN7x3tigsVlOkQv7D18mAN3MEgvNAL1sPIDJE'
+                    'Authorization': token
                 }
             };
             

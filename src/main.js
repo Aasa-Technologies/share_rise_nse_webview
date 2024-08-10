@@ -1,8 +1,11 @@
 // Datafeed implementation that you will add later
 import Datafeed from './datafeed.js';
 
+let url = new URL(window.location.href);
+let instrumentId = url.searchParams.get('instrumentId');
+
 window.tvWidget = new TradingView.widget({
-    symbol: 'RELIANCE',            // Default symbol pair
+    symbol: instrumentId || 'RELIANCE',            // Default symbol pair
     interval: '1D',                        // Default interval
     fullscreen: true,                      // Displays the chart in the fullscreen mode
     container: 'tv_chart_container',       // Reference to an attribute of a DOM element
