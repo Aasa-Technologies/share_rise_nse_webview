@@ -6,7 +6,7 @@ let instrumentId = url.searchParams.get('instrumentId');
 
 window.tvWidget = new TradingView.widget({
     symbol: instrumentId || 'RELIANCE',            // Default symbol pair
-    interval: '1D',                        // Default interval
+    interval: '1W',                        // Default interval
     fullscreen: true,                      // Displays the chart in the fullscreen mode
     container: 'tv_chart_container',       // Reference to an attribute of a DOM element
     datafeed: Datafeed,
