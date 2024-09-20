@@ -1,7 +1,7 @@
 // Makes requests to CryptoCompare API
 export async function makeApiRequest(path) {
     try {
-        const response = await fetch(`https://jellyfish-app-ynvey.ondigitalocean.app/v1/user/getAllMasterData/NSECM`);
+        const response = await fetch(`https://sharerisebackend.in1.apiqcloud.com/v1/user/getAllMasterData/NSECM`);
         // const response = await fetch(`https://min-api.cryptocompare.com/${path}`);
         return response.json();
     } catch(error) {
