@@ -1,7 +1,8 @@
 // Makes requests to CryptoCompare API
 export async function makeApiRequest(path) {
     try {
-        const response = await fetch(`https://sharerisebackend.in1.apiqcloud.com/v1/user/getAllMasterData/NSECM`);
+        const response = await fetch(`https://sharerise.aasa.in/v1/user/getAllMasterData/NSECM`);
+        // const response = await fetch(`https://sharerisebackend.in1.apiqcloud.com/v1/user/getAllMasterData/NSECM`);
         // const response = await fetch(`https://min-api.cryptocompare.com/${path}`);
         return response.json();
     } catch(error) {

@@ -91,9 +91,6 @@ export default {
     ) => {
         console.log('[searchSymbols]: Method call');
         const symbols = await getAllSymbols();
-        // console.log("userInput-----------",userInput)
-        // console.log("exchange-----------",exchange)
-        // console.log("symbolType-----------",symbolType)
         
         const newSymbols = symbols.filter(symbol => {
             const isExchangeValid = exchange === '' || symbol.type === symbolType;
@@ -101,7 +98,6 @@ export default {
             const isFullSymbolContainsInput = symbol.ticker
                 .toLowerCase()
                 .indexOf(userInput.toLowerCase()) !== -1;
-            // console.log("isFullSymbolContainsInput-----------",isFullSymbolContainsInput)
             return isExchangeValid && isFullSymbolContainsInput;
         });
         onResultReadyCallback(newSymbols);
@@ -115,14 +111,12 @@ export default {
     ) => {
         console.log('[resolveSymbol]: Method call', symbolName);
         const symbols = await getAllSymbols();
-        // console.log('getAllSymbols--------------------', symbols);
         const symbolItem = symbols.find(({ ticker }) => ticker === symbolName);
         if (!symbolItem) {
             console.log('[resolveSymbol]: Cannot resolve symbol', symbolName);
             onResolveErrorCallback('Cannot resolve symbol');
             return;
         }
-        console.log('Found--------------------');
         // Symbol information object
         const symbolInfo = {
             ticker: symbolItem.ticker,
