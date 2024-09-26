@@ -161,7 +161,7 @@ export default {
 
             let yesterday = await getFormattedYesterday();
 
-            const url = `https://ttblaze.iifl.com/apimarketdata/instruments/ohlc?exchangeSegment=1&exchangeInstrumentID=${symbolInfo?.exchange}&startTime=Jan 01 1990 090000&endTime=${yesterday} 153000&compressionValue=60`;
+            const url = `https://ttblaze.iifl.com/apimarketdata/instruments/ohlc?exchangeSegment=1&exchangeInstrumentID=${symbolInfo?.exchange}&startTime=Dec 01 2020 090000&endTime=${yesterday} 153000&compressionValue=60`;
 
             const options = {
                 method: 'GET',
