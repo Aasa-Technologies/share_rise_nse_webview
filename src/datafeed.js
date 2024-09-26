@@ -53,27 +53,7 @@ async function getAllSymbols() {
             }
         );
     }
-    // console.log("allSymbols-----------",allSymbols);
-
-    // for (const exchange of configurationData.exchanges) {
-    //     const pairs = data.Data[exchange.value].pairs;
-
-    //     for (const leftPairPart of Object.keys(pairs)) {
-    //         const symbols = pairs[leftPairPart].map(rightPairPart => {
-    //             const symbol = generateSymbol(exchange.value, leftPairPart, rightPairPart);
-    //             return {
-    //                 symbol: symbol.short,
-    //                 ticker: symbol.full,
-    //                 description: symbol.short,
-    //                 exchange: exchange.value,
-    //                 // type: 'crypto',
-    //             };
-    //         });
-    //         allSymbols = [...allSymbols, ...symbols];
-    //     }
-    // }
-
-    // console.log("allSymbols-----------",allSymbols)
+    
     return allSymbols;
 }
 
@@ -141,21 +121,7 @@ export default {
 
     getBars: async (symbolInfo, resolution, periodParams, onHistoryCallback, onErrorCallback) => {
         const { from, to, firstDataRequest } = periodParams;
-        // console.log('[getBars]: Method call', symbolInfo, resolution, from, to);
-        // console.log('from----------------------', from);
-        // console.log('to-------------------------', to);
-        // console.log('exchange-------------------------', symbolInfo?.exchange);
-        // const parsedSymbol = parseFullSymbol(symbolInfo.ticker);
-        // const urlParameters = {
-        //     e: parsedSymbol.exchange,
-        //     fsym: parsedSymbol.fromSymbol,
-        //     tsym: parsedSymbol.toSymbol,
-        //     toTs: to,
-        //     limit: 2000,
-        // };
-        // const query = Object.keys(urlParameters)
-        //     .map(name => `${name}=${encodeURIComponent(urlParameters[name])}`)
-        //         .join('&');
+       
         try {
             // const data = await makeApiRequest(`data/histoday?${query}`);
 
@@ -176,13 +142,7 @@ export default {
             }
 
             const data = await response.json();
-
             
-            // if (data.Response && data.Response === 'Error' || data.Data.length === 0) {
-                //     // "noData" should be set if there is no data in the requested period
-                //     onHistoryCallback([], { noData: true });
-                //     return;
-                // }
                 let bars = [];
                 
                 const rawData = data?.result?.dataReponse;
@@ -194,7 +154,6 @@ export default {
                     records.forEach(record => {
                         // Split each record by the pipe delimiter
                         const values = record.split('|');
-                        // console.log("values---------------------",values);
                         
                         if (values.length >= 7) { // Ensure there are enough values
                             const [epochTime, open, high, low, close, volume, oi] = values;
@@ -212,21 +171,7 @@ export default {
                         }
                     });
                 }
-
-                console.log("bars---------------------",bars);
-
-                // data.Data.forEach(bar => {
-                //     if (bar.time >= from && bar.time < to) {
-                //         bars = [...bars, {
-                //             time: bar.time * 1000,
-                //             low: bar.low,
-                //             high: bar.high,
-                //             open: bar.open,
-                //             close: bar.close,
-                //         }];
-                //     }
-                // });
-                // console.log(`[getBars]: returned ${bars.length} bar(s)`);
+                
             onHistoryCallback(bars, { noData: false });
         } catch (error) {
             console.log('[getBars]: Get error', error);
